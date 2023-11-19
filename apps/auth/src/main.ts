@@ -21,6 +21,6 @@ async function bootstrap() {
   app.useLogger(app.get(Logger));
   
   app.startAllMicroservices();
-  await app.listen(configService.get('HTT_PORT'));
+  await app.listen(configService.get('HTTP_PORT'));
 }
 bootstrap();
