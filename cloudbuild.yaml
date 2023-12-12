@@ -8,8 +8,6 @@ steps:
         'asia-southeast1-docker.pkg.dev/ageless-airship-404212/reservations/production',
         '-f',
         'apps/reservations/Dockerfile',
-        '--platform',
-        'linux/arm64',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
