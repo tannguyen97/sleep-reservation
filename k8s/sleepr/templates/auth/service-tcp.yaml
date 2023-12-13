@@ -7,9 +7,9 @@ metadata:
 spec:
   ports:
   - name: "tcp"
-    port: 3003
+    port: 3002
     protocol: TCP
-    targetPort: 3003
+    targetPort: 3002
   selector:
     app: auth
   type: ClusterIP

@@ -10,7 +10,6 @@ spec:
     port: 3004
     protocol: TCP
     targetPort: 3004
-    nodePort: 30123
   selector:
     app: reservations
   type: NodePort
