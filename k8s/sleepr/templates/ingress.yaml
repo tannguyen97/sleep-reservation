@@ -2,6 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: sleepr
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: alb
 spec:
   rules:
     - http:
@@ -11,12 +14,12 @@ spec:
             backend:
               service:
                 name: reservations
-                port: 
+                port:
                   number: 3004
           - path: /auth/*
             pathType: ImplementationSpecific
             backend:
               service:
                 name: auth-http
-                port: 
+                port:
                   number: 3003
