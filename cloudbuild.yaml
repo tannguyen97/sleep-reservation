@@ -9,7 +9,7 @@ steps:
         '-f',
         'apps/reservations/Dockerfile',
         '--platform',
-        'linux/amd64',
+        'linux/x86_64',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -28,6 +28,8 @@ steps:
         'asia-southeast1-docker.pkg.dev/ageless-airship-404212/auth/production',
         '-f',
         'apps/auth/Dockerfile',
+        '--platform',
+        'linux/x86_64',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -46,6 +48,8 @@ steps:
         'asia-southeast1-docker.pkg.dev/ageless-airship-404212/notifications/production',
         '-f',
         'apps/notifications/Dockerfile',
+        '--platform',
+        'linux/x86_64',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -64,6 +68,8 @@ steps:
         'asia-southeast1-docker.pkg.dev/ageless-airship-404212/payments/production',
         '-f',
         'apps/payments/Dockerfile',
+        '--platform',
+        'linux/x86_64',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
