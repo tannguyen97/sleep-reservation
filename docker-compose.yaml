@@ -43,7 +43,9 @@ services:
       - '3001:3001'
     volumes:
       - .:/usr/src/app
-  mongo:
-    image: mongo
+  mysql:
+    image: mysql
+    env_file:
+      - .env
     ports:
-      - '28017:27017'
+      - '3306:3306'

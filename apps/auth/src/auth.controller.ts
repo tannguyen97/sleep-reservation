@@ -1,33 +1,28 @@
-import { Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './guards/local-auth.guard';
-import { CurrentUser, UsersDocument } from '@app/common';
-import { Response } from 'express';
-import { JwtAuthGuard } from './guards/jwt.guard';
+import { CurrentUser, User } from '@app/common';
+import { Controller, Post, Res, UseGuards } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Response } from 'express';
+import { AuthService } from './auth.service';
+import { JwtAuthGuard } from './guards/jwt.guard';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+   constructor(private readonly authService: AuthService) {}
 
-  @UseGuards(LocalAuthGuard)
-  @Post('login')
-  async login(
-    @CurrentUser() currentUser: UsersDocument,
-    @Res({ passthrough: true }) response: Response
-  ) {
-    await this.authService.login(currentUser, response);
-    response.send(currentUser);
-  }
+   @UseGuards(LocalAuthGuard)
+   @Post('login')
+   async login(
+      @CurrentUser() currentUser: User,
+      @Res({ passthrough: true }) response: Response,
+   ) {
+      await this.authService.login(currentUser, response);
+      response.send(currentUser);
+   }
 
-  @UseGuards(JwtAuthGuard)
-  @MessagePattern('authenticate')
-  async authenticate(@Payload() data: any) {
-    return data.user;
-  }
-
-  @Get()
-  getHello(): string {
-    return this.authService.getHello();
-  }
+   @UseGuards(JwtAuthGuard)
+   @MessagePattern('authenticate')
+   async authenticate(@Payload() data: any) {
+      return data.user;
+   }
 }
