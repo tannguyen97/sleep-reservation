@@ -24,7 +24,7 @@ export class JwtAuthGuard implements CanActivate {
       context: ExecutionContext,
    ): boolean | Promise<boolean> | Observable<boolean> {
       const jwt =
-         context.switchToHttp().getRequest().cookies?.Authenication ||
+         context.switchToHttp().getRequest().cookies?.Authentication ||
          context.switchToHttp().getRequest().headers?.authentication;
 
       if (!jwt) return false;
@@ -33,7 +33,7 @@ export class JwtAuthGuard implements CanActivate {
 
       return this.clientProxy
          .send<UserDto>('authenticate', {
-            Authenication: jwt,
+            Authentication: jwt,
          })
          .pipe(
             tap((res) => {
