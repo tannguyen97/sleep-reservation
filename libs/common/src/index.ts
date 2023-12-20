@@ -6,5 +6,4 @@ export * from './decorator';
 export * from './dto';
 export * from './models';
 export * from './health';
-
-
+export * from './types';
