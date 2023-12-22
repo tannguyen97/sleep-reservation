@@ -1,27 +1,41 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsDefined, IsNotEmpty, IsNotEmptyObject, IsString, ValidateNested } from 'class-validator';
+import {
+   IsDate,
+   IsDefined,
+   IsNotEmpty,
+   IsNotEmptyObject,
+   IsString,
+   ValidateNested,
+} from 'class-validator';
 import { CreateChargeDto } from '@app/common';
+import { Field, InputType } from '@nestjs/graphql';
 
+@InputType()
 export class CreateReservationDto {
    @IsDate()
    @Type(() => Date)
-   startDate: Date
+   @Field()
+   startDate: Date;
 
    @IsDate()
    @Type(() => Date)
-   endDate: Date
+   @Field()
+   endDate: Date;
 
    @IsString()
    @IsNotEmpty()
-   invoiceId: string
+   @Field()
+   invoiceId: string;
 
    @IsString()
    @IsNotEmpty()
-   placeId: string
+   @Field()
+   placeId: string;
 
    @IsDefined()
    @IsNotEmptyObject()
    @ValidateNested()
    @Type(() => CreateChargeDto)
-   charge: CreateChargeDto 
+   @Field(() => CreateChargeDto)
+   charge: CreateChargeDto;
 }
